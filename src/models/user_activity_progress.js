@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      user_activity_progress.belongsTo(models.program_day_activity, {
+        foreignKey: "program_day_activity_id",
+        as: "program_day_activity",
+      });
     }
   }
   user_activity_progress.init(

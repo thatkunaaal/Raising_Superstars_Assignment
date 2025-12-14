@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class activities extends Model {
     /**
@@ -9,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      activities.hasMany(models.program_day_activity, {
+        foreignKey: "activity_id",
+        sourceKey: "id",
+      });
     }
   }
   activities.init(
@@ -32,5 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "activities",
     }
   );
+
   return activities;
 };

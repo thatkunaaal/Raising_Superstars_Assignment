@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      program_day_activity.belongsTo(models.activities, {
+        foreignKey: "activity_id",
+        targetKey: "id",
+      });
+      program_day_activity.hasMany(models.user_activity_progress, {
+        foreignKey: "program_day_activity_id",
+        as: "user_activity_progress",
+      });
     }
   }
   program_day_activity.init(
@@ -37,5 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "program_day_activity",
     }
   );
+
   return program_day_activity;
 };
